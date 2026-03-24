@@ -2,26 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+  }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F5F4F0;
+  --color-surface: #FAFAF8;
+  --color-border: #E8E5DE;
+  --color-border-hover: #C8C4BA;
+  --color-accent: #C0392B;
+  --color-accent-dark: #962D22;
+  --color-green: #1C2B1A;
+  --color-green-mid: #4A7C3F;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B7280;
+  --color-terracotta: #8B7355;
+  --color-gold: #B8962E;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Texture Sottile (opzionale per sezioni crema) */
+.section-alt {
+  background-color: var(--color-bg-alt);
+  position: relative;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.section-alt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Liquid Glass Navbar */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(232, 229, 222, 0.7);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.card-image-wrapper {
+  overflow: hidden;
+}
+
+.card-image-wrapper img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .card-image-wrapper img {
+  transform: scale(1.05);
+}
+
+/* Gradient overlay hero */
+.hero-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.30) 50%,
+    rgba(0, 0, 0, 0.10) 100%
+  );
 }
