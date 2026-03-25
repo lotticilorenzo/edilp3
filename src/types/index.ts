@@ -7,6 +7,28 @@ export type ZonaParma =
   | 'collecchio'
   | 'centro'
 
+export interface FaseCantiere {
+  label: string
+  percentuale: number
+  completata: boolean
+  note?: string
+}
+
+export interface TimelineEntry {
+  mese: string
+  titolo: string
+  descrizione?: string
+  immagine?: string
+  milestone?: boolean
+}
+
+export interface BeforeAfter {
+  before: string
+  after: string
+  labelBefore?: string
+  labelAfter?: string
+}
+
 export interface Immobile {
   id: string
   slug: string
@@ -29,6 +51,8 @@ export interface Immobile {
   descrizione: string
   dataConsegna?: string
   badge?: 'Nuovo' | 'In costruzione' | 'Ultima disponibile' | 'Venduto'
+  fasiCantiere?: FaseCantiere[]
+  beforeAfter?: BeforeAfter
 }
 
 export interface Zona {
@@ -53,6 +77,8 @@ export interface Realizzazione {
   copertina: string
   descrizione: string
   caratteristiche: string[]
+  timeline?: TimelineEntry[]
+  beforeAfter?: BeforeAfter
 }
 
 export interface FormContattoData {
@@ -73,4 +99,12 @@ export interface Recensione {
   testo: string
   data: string
   fonte: 'google'
+}
+
+export interface Materiale {
+  categoria: string
+  fornitore: string
+  descrizione: string
+  certificazione?: string
+  logo?: string
 }
