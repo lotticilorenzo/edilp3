@@ -17,6 +17,8 @@ export function CursorFollower() {
     const label = labelRef.current
     if (!dot || !ring || !label) return
 
+    document.body.classList.add('cursor-active')
+
     let mouseX = -100
     let mouseY = -100
     let ringX = -100
@@ -99,6 +101,7 @@ export function CursorFollower() {
     rafId = requestAnimationFrame(tick)
 
     return () => {
+      document.body.classList.remove('cursor-active')
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mouseover', handleMouseOver)

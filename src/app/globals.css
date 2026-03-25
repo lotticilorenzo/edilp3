@@ -36,8 +36,12 @@
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: none; /* custom cursor on desktop */
     overscroll-behavior-x: none;
+  }
+
+  /* Hide native cursor only when custom cursor is active */
+  body.cursor-active {
+    cursor: none;
   }
 
   /* ── Global noise grain ── */
@@ -58,7 +62,6 @@
 
   @media (pointer: coarse) {
     body {
-      cursor: auto;
       overscroll-behavior: contain;
     }
   }
@@ -98,14 +101,15 @@
     font-size: max(16px, 1rem);
   }
 
-  /* Restore default cursor on interactive elements for a11y */
-  a, button, [role="button"], input, select, textarea, label {
+  /* Hide native cursor on interactive elements when custom cursor is active */
+  body.cursor-active a,
+  body.cursor-active button,
+  body.cursor-active [role="button"],
+  body.cursor-active input,
+  body.cursor-active select,
+  body.cursor-active textarea,
+  body.cursor-active label {
     cursor: none;
-  }
-  @media (pointer: coarse) {
-    a, button, [role="button"], input, select, textarea, label {
-      cursor: auto;
-    }
   }
 }
 
